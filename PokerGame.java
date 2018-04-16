@@ -5,4 +5,10 @@ package com.nealhartley.pokerbuddy;
  */
 
 public class PokerGame {
+
+    private Dealer dealer;
+    public PokerGame(){
+        dealer = new Dealer();
+    }
+
 }
