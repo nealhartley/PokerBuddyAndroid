@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public void start(View view){
         view.setVisibility(View.INVISIBLE);
         Intent intent = new Intent(getApplicationContext(),CardPicker.class);
+        intent.putParcelableArrayListExtra("deck",game.getDeck());
         startActivity(intent);
 
     }

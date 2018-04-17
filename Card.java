@@ -15,8 +15,8 @@ public class Card implements Parcelable{
     private String suit;
 
     public Card(int value, String suit){
-        value = value;
-        suit = suit;
+        this.value = value;
+        this.suit = suit;
     }
 
     public int getValue() {

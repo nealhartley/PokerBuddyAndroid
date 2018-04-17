@@ -17,16 +17,16 @@ public class Deck {
         for(int i = 0; i < 4; i++){
             for(int j = 1; j<= 13; j++){
                 switch (i){
-                    case 1: i = 0;
+                    case 0:
                         deck.add(new Card(j,"HEARTS"));
                         break;
-                    case 2: i = 1;
+                    case 1:
                         deck.add(new Card(j,"CLUBS"));
                         break;
-                    case 3: i = 2;
+                    case 2:
                         deck.add(new Card(j,"DIAMONDS"));
                         break;
-                    case 4: i = 3;
+                    case 3:
                         deck.add(new Card(j,"SPADES"));
                         break;
                 }
