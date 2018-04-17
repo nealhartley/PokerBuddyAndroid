@@ -41,5 +41,9 @@ public class Deck {
 
     }
 
+    public ArrayList<Card> getDeckasArrayList(){
+        return deck;
+    }
+
 
 }
