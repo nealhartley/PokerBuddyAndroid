@@ -29,4 +29,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    //TODO: What happens after they select some cards? Game logic...
+
+    // 8 stages:
+    //     select starting hand - purely selecting cards
+    //          advice
+    //     flop                 - select cards for the flop
+    //          advice
+    //     turn                 - select card for the turn
+    //          advice
+    //     river                - select last card
+    //          advice
+
+
 }
