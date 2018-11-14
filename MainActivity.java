@@ -18,18 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private PokerGame game;
-    private String stage = "DEAL_ONE";
 
-    //the cards
-        //hand
-    private Card handOne;
-    private Card handTwo;
-        //flop
-    private Card flopOne;
-    private Card flopTwo;
-    private Card flopThree;
-    private Card turn;
-    private Card river;
+
 
 
     @Override
@@ -84,20 +74,19 @@ public class MainActivity extends AppCompatActivity {
         Log.i("assign card", card.getValue() + " of " + card.getSuit());
 
 
-        switch (stage) {
+        switch (game.getState()) {
             case "DEAL_ONE":
                 setCardText(R.id.cardOne, card);
-
                 TextView title = (TextView) findViewById(R.id.handTitle);
                 title.setText("YOUR HAND");
-
-                stage = "DEAL_TWO";
+                game.setCard(card);
+                game.advanceState();
                 break;
 
             case "DEAL_TWO":
                 setCardText(R.id.cardTwo, card);
-
-                stage = "FLOP_ONE";
+                game.setCard(card);
+                game.advanceState();
                 break;
 
             case "FLOP_ONE":
@@ -105,32 +94,32 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView table = (TextView) findViewById(R.id.table);
                 table.setText("The table");
-
-                stage = "FLOP_TWO";
+                game.setCard(card);
+                game.advanceState();
                 break;
 
             case "FLOP_TWO":
                 setCardText(R.id.flopTwo, card);
-
-                stage = "FLOP_THREE";
+                game.setCard(card);
+                game.advanceState();
                 break;
 
             case "FLOP_THREE":
                 setCardText(R.id.flopThree, card);
-
-                stage = "TURN";
+                game.setCard(card);
+                game.advanceState();
                 break;
 
             case "TURN":
                 setCardText(R.id.turn, card);
-
-                stage = "RIVER";
+                game.setCard(card);
+                game.advanceState();
                 break;
 
             case "RIVER":
                 setCardText(R.id.river, card);
-
-                stage = "FINISHED";
+                game.setCard(card);
+                game.advanceState();
                 break;
 
 
@@ -147,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    //TODO: need to move lots of this game logic from amint activity to poker game class. Main activity becoming big ball of mud
+    //TODO: need to move lots of this game logic from MainActivity to poker game class. Main activity becoming big ball of mud
 
 
 }
