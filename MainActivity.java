@@ -134,9 +134,9 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //TODO: Need to use better graphics for the cards. Display cards as graphics not text. Allign cards better.
 
-
-    //TODO: need to move lots of this game logic from MainActivity to poker game class. Main activity becoming big ball of mud
+    //TODO: Update advice text according to the advice given out by PokerGame.
 
 
 }

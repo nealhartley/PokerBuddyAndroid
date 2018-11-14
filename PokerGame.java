@@ -109,4 +109,8 @@ public class PokerGame{
                 break;
         }
     }
+
+    //TODO: Add in the logic for giving advice. Do we want a seperate advice class or should this take palce in game logic?
+    //TODO: Game logic works out circumstance then petitions a text holding class for the actual advice string?
+    //TODO: Advice text as series of filters added if they are true?
 }
