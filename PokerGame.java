@@ -17,4 +17,9 @@ public class PokerGame{
         return dealer.getDeck();
     }
 
+    public boolean removeCard(int val, String suit){
+        return dealer.removeCard(val, suit);
+
+    }
+
 }

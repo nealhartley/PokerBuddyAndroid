@@ -17,5 +17,11 @@ public class Dealer {
 
     public ArrayList<Card> getDeck() {
         return deck.getDeckasArrayList();
+
+    }
+
+    public boolean removeCard(int val, String suit) {
+
+        return deck.drawCard(val, suit);
     }
 }

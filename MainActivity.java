@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -18,6 +19,18 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private PokerGame game;
     private String stage = "DEAL_ONE";
+
+    //the cards
+        //hand
+    private Card handOne;
+    private Card handTwo;
+        //flop
+    private Card flopOne;
+    private Card flopTwo;
+    private Card flopThree;
+    private Card turn;
+    private Card river;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +60,18 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 Log.i("resulting: ", "RESULT_OK");
 
+                //add selected card to game data
                 Card cardReturned = new Card( data.getIntExtra("SelectedCardNumber",-1), data.getStringExtra("SelectedCardSuit") );
                 assignCard(cardReturned);
+
+                //update the deck
+                if(game.removeCard(cardReturned.getValue(),cardReturned.getSuit())){
+
+                }
+                else{
+                    Toast toast = Toast.makeText(getApplicationContext(),"error removing card from game deck",Toast.LENGTH_LONG);
+                    toast.show();
+                }
 
             }
         }
@@ -63,38 +86,68 @@ public class MainActivity extends AppCompatActivity {
 
         switch (stage) {
             case "DEAL_ONE":
-                TextView cardOne = (TextView) findViewById(R.id.cardOne);
-                cardOne.setText(card.getValue() + " of " + card.getSuit());
+                setCardText(R.id.cardOne, card);
 
                 TextView title = (TextView) findViewById(R.id.handTitle);
                 title.setText("YOUR HAND");
 
                 stage = "DEAL_TWO";
                 break;
-            case "DEAL_TWO":
-                TextView cardTwo = (TextView) findViewById(R.id.cardTwo);
-                cardTwo.setText(card.getValue() + " of " + card.getSuit());
 
-                stage = "STAGE_THREE";
+            case "DEAL_TWO":
+                setCardText(R.id.cardTwo, card);
+
+                stage = "FLOP_ONE";
                 break;
 
+            case "FLOP_ONE":
+                setCardText(R.id.flopOne, card);
+
+                TextView table = (TextView) findViewById(R.id.table);
+                table.setText("The table");
+
+                stage = "FLOP_TWO";
+                break;
+
+            case "FLOP_TWO":
+                setCardText(R.id.flopTwo, card);
+
+                stage = "FLOP_THREE";
+                break;
+
+            case "FLOP_THREE":
+                setCardText(R.id.flopThree, card);
+
+                stage = "TURN";
+                break;
+
+            case "TURN":
+                setCardText(R.id.turn, card);
+
+                stage = "RIVER";
+                break;
+
+            case "RIVER":
+                setCardText(R.id.river, card);
+
+                stage = "FINISHED";
+                break;
+
+
         }
-
-
-
     }
 
-    //TODO: What happens after they select some cards? Game logic...
+    public boolean setCardText(int viewId,  Card card){
+        TextView cardView = (TextView) findViewById(viewId);
+        cardView.setText(card.getValue() + " of " + card.getSuit());
 
-    // 8 stages:
-    //     select starting hand - purely selecting cards
-    //          advice
-    //     flop                 - select cards for the flop
-    //          advice
-    //     turn                 - select card for the turn
-    //          advice
-    //     river                - select last card
-    //          advice
+
+        return true;
+    }
+
+
+
+    //TODO: need to move lots of this game logic from amint activity to poker game class. Main activity becoming big ball of mud
 
 
 }
