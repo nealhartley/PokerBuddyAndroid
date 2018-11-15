@@ -23,6 +23,10 @@ public class PokerGame{
     private Card river;
 
 
+    //Advice text
+    private String advice = "";
+
+
     public PokerGame(){
         dealer = new Dealer();
     }
