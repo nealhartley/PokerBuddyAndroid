@@ -1,5 +1,7 @@
 package com.nealhartley.pokerbuddy;
 
+import com.nealhartley.pokerbuddy.Filters.AdviceFilterInterface;
+
 import java.util.ArrayList;
 
 /**
