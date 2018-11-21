@@ -10,8 +10,8 @@ public class AdvicePacket {
     private int strength;
 
     public AdvicePacket(String advice, int strength){
-        advice = advice;
-        strength = strength;
+        this.advice = advice;
+        this.strength = strength;
     }
 
     public String getAdvice() {

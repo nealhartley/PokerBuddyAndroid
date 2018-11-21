@@ -40,16 +40,10 @@ public class Deck {
 
         Card toRemove = new Card(value, suit);
 
-        Log.i("in deck class", "removing: " + value + " of " + suit);
-
-
-
         for (Card c: deck) {
 
-            Log.i("in deck class", "    comparing: " + c.getValue() + " of " + c.getSuit());
-
             if((c.getSuit().equals(suit)) && (c.getValue() == value)){
-                Log.i("in deck class", " found a match!");
+
                 deck.remove(c);
 
                 return true;

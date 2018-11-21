@@ -1,5 +1,7 @@
 package com.nealhartley.pokerbuddy;
 
+import android.util.Log;
+
 import com.nealhartley.pokerbuddy.Filters.AdviceFilterInterface;
 import com.nealhartley.pokerbuddy.Filters.HighCardFilter;
 import com.nealhartley.pokerbuddy.Filters.HighPairFilter;
@@ -42,10 +44,11 @@ public class AdviceFilterController {
         cards.add(handTwo);
 
         for (AdviceFilterInterface filter: handFilters ) {
-
+            Log.i("filtering","filtering");
             if(filter.isTrue(cards)){
                 advice = advice + filter.getText(cards);
                 strength = strength + filter.getSrength(cards);
+                Log.i("filtering","found filter that applies. advice: " + advice + ", strength: " + strength);
             }
 
         }

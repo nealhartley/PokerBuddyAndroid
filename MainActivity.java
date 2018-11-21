@@ -3,6 +3,7 @@ package com.nealhartley.pokerbuddy;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -86,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
             case "DEAL_TWO":
                 setCardText(R.id.cardTwo, card);
                 game.setCard(card);
+                applyAdvice();
                 game.advanceState();
+
                 break;
 
             case "FLOP_ONE":
@@ -133,6 +136,43 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+    //methods for setting text form filtering when needed
+    public void applyAdvice(){
+        Log.i("main","applying advice");
+        TextView adviceText = (TextView) findViewById(R.id.adviceText);
+        TextView strengthText = (TextView) findViewById(R.id.strengthText);
+
+        AdvicePacket advice = game.getFilterResults();
+
+        if(advice != null){
+            Log.i("advice",advice.getAdvice());
+            Log.i("strength",advice.getStrength() + "");
+            adviceText.setText(advice.getAdvice());
+
+            switch (advice.getStrength()){
+                case 1:
+                    strengthText.setText("Strength: weak");
+                    strengthText.setTextColor(Color.RED);
+                    break;
+                case 2:
+                    strengthText.setText("Strength: medium");
+                    strengthText.setTextColor(Color.YELLOW);
+                    break;
+                default:
+                    strengthText.setText("Strength: strong");
+                    strengthText.setTextColor(Color.GREEN);
+                    break;
+
+            }
+
+            strengthText.setText("Strength: " + advice.getStrength());
+        }else{
+            Log.i("null","advice not existent");
+        }
+    }
+
+
 
     //TODO: Need to use better graphics for the cards. Display cards as graphics not text. Allign cards better.
 

@@ -1,5 +1,7 @@
 package com.nealhartley.pokerbuddy;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -10,6 +12,8 @@ public class PokerGame{
 
     private String gameState = "DEAL_ONE";
     private Dealer dealer;
+
+    private AdviceFilterController filterController;
 
     //the cards
     //hand
@@ -28,7 +32,9 @@ public class PokerGame{
 
 
     public PokerGame(){
+
         dealer = new Dealer();
+        filterController = new AdviceFilterController();
     }
 
     public ArrayList<Card> getDeck(){
@@ -112,6 +118,16 @@ public class PokerGame{
                 river = card;
                 break;
         }
+    }
+
+    //the methods for retrieving the results of the filtering for advice.
+    public AdvicePacket getFilterResults(){
+        if(gameState.equals("DEAL_TWO")){
+            Log.i("game","game state correct");
+            return filterController.filter(handOne, handTwo);
+        }
+        Log.i("game","returning null gamestate incorrect");
+        return null;
     }
 
     //TODO: Add in the logic for giving advice. Do we want a seperate advice class or should this take palce in game logic?
