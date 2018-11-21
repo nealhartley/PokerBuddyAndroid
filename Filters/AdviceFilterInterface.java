@@ -24,7 +24,7 @@ public int getSrength(ArrayList<Card> cards);
 
     //TODO: now i need to think of all the concrete implimentations for these filters
     // for hand
-    //high pair - 3, low pair - 1, suited - 1, straight potential - 1 or 2
+    //high pair - 3, low pair - 1, suited - 1, straight potential - 1, high card - 1
 
     //for flop
     //triples - 3, straight potential - 1, flush potential - 1, high pair - 2,
