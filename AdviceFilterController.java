@@ -1,6 +1,11 @@
 package com.nealhartley.pokerbuddy;
 
 import com.nealhartley.pokerbuddy.Filters.AdviceFilterInterface;
+import com.nealhartley.pokerbuddy.Filters.HighCardFilter;
+import com.nealhartley.pokerbuddy.Filters.HighPairFilter;
+import com.nealhartley.pokerbuddy.Filters.LowPairFilter;
+import com.nealhartley.pokerbuddy.Filters.StraightPotenFilter;
+import com.nealhartley.pokerbuddy.Filters.SuitedPairFilter;
 
 import java.util.ArrayList;
 
@@ -11,6 +16,7 @@ import java.util.ArrayList;
 public class AdviceFilterController {
 
     private String advice = "";
+    private int strength = 0;
 
     private ArrayList<AdviceFilterInterface> handFilters;
     private ArrayList<AdviceFilterInterface> flopFilters;
@@ -19,10 +25,33 @@ public class AdviceFilterController {
 
     public AdviceFilterController(){
 
+        //lets set up all the filters for hand.
+        handFilters = new ArrayList<AdviceFilterInterface>();
+        handFilters.add(new HighCardFilter());
+        handFilters.add(new HighPairFilter());
+        handFilters.add(new LowPairFilter());
+        handFilters.add(new StraightPotenFilter());
+        handFilters.add(new SuitedPairFilter());
+
     }
 
-    public String filter(Card handOne, Card handTwo){
-        return advice;
+    public AdvicePacket filter(Card handOne, Card handTwo){
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(handOne);
+        cards.add(handTwo);
+
+        for (AdviceFilterInterface filter: handFilters ) {
+
+            if(filter.isTrue(cards)){
+                advice = advice + filter.getText(cards);
+                strength = strength + filter.getSrength(cards);
+            }
+
+        }
+
+
+        return new AdvicePacket(advice, strength);
     }
 
 
