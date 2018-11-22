@@ -38,10 +38,10 @@ public class StraightPotenFilter implements AdviceFilterInterface{
     public String getText(ArrayList<Card> cards) {
 
         return "Straight potential can come in handy. Just realise that forming the straight from the potential is very unlikely." +
-                "It becomes more likely the closer your cards are together. This is called: The Spread. /n" +
-                "/n" +
+                "It becomes more likely the closer your cards are together. This is called: The Spread. \n" +
+                "\n" +
                 "Straights much like flushes are great to have in your back pocket. Its strength should be balanced out with" +
-                "other potential in your hand.";
+                "other potential in your hand.\n";
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         game = new PokerGame();
         sharedPreferences = this.getSharedPreferences("com.nealhartley.pokerbuddy", Context.MODE_PRIVATE);//THINKNEAL
+
+        TextView textView = (TextView) findViewById(R.id.adviceText);
+        textView.setMovementMethod(new ScrollingMovementMethod());
 
     }
 
@@ -165,8 +169,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
             }
-
-            strengthText.setText("Strength: " + advice.getStrength());
         }else{
             Log.i("null","advice not existent");
         }

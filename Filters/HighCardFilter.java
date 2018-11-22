@@ -30,7 +30,7 @@ public class HighCardFilter implements AdviceFilterInterface{
     public String getText(ArrayList<Card> cards) {
         return "A high card often wins a lot of hands in poker. The chance that you will pair up somewhere down the line is close" +
                 "to 50%. It's always worth seeing the flop with a high card, so long as you dont have to pay more than the blinds." +
-                "Combine a high card with other potential and it can devestate your opposition. Be ready to get called: A lucky player";
+                "Combine a high card with other potential and it can devestate your opposition. Be ready to get called: A lucky player\n";
     }
 
     @Override
